@@ -196,6 +196,33 @@ combinedFeatureSet2 <- combinedFeatureSet2[,-wZ]
 
 store_on_synapse_fs <- combinedFeatureSet2
 
+permLink <- githubr::getPermlink(repository = 'blogsdon/AMP-AD_Driver_Prediction_Engine',
+                                 ref = 'branch',
+                                 refName = 'dev',
+                                 repositoryPath = 'ad_causal_gene_predictor_ver0_0_1.R')
+edgeListObj<-rSynapseUtilities::pushDf2Synapse(df = store_on_synapse_fs,
+                                               fileName = 'amp_ad_rna_seq_feature_set.csv',
+                                               synapseFolderId = 'syn7525089',
+                                               annos = c('analysisType' = 'featureLearning',
+                                                         'assay' = 'RNAseq',
+                                                         'consortium' = 'AMP-AD',
+                                                         'dataSubType' = 'geneExp',
+                                                         'dataType' = 'analysis',
+                                                         'fileType' = 'csv',
+                                                         'normalizationStatus' = 'TRUE',
+                                                         'normalizationType' = 'CPM',
+                                                         'organism' = 'HomoSapiens',
+                                                         'summaryLevel' = 'gene'),
+                                               comment = 'first version of network + deg features used for prediction engine',
+                                               usedVector = c(foo5$id,'syn10496554'),
+                                               executedVector = permLink,
+                                               activityName1 = 'feature building',
+                                               activityDescription1 = 'build network and deg features')
+
+
+
+
+
 combinedFeatureSet2 <- scale(combinedFeatureSet2)
 
 ####fit models
