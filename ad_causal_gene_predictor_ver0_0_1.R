@@ -200,7 +200,7 @@ permLink <- githubr::getPermlink(repository = 'blogsdon/AMP-AD_Driver_Prediction
                                  ref = 'branch',
                                  refName = 'dev',
                                  repositoryPath = 'ad_causal_gene_predictor_ver0_0_1.R')
-edgeListObj<-rSynapseUtilities::pushDf2Synapse(df = store_on_synapse_fs,
+fsObj<-rSynapseUtilities::pushDf2Synapse(df = store_on_synapse_fs,
                                                fileName = 'amp_ad_rna_seq_feature_set.csv',
                                                synapseFolderId = 'syn7525089',
                                                annos = c('analysisType' = 'featureLearning',
