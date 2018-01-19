@@ -26,6 +26,23 @@ nedges <- sapply(ampNetworks,function(x) sum(x))
 foo$nedges <- nedges
 foo5 <- foo
 
+makeAggregateNetworks <- function(br,aggMod,aggModMani,networks){
+  net <- networks[[br]]
+  modDef <- dplyr::filter(aggModMani,ModuleNameFull == aggMod)$GeneID
+  net <- net[modDef,modDef]
+  net <- igraph::graph_from_adjacency_matrix(net,mode='undirected')
+  return(net)
+}
+mani <- dplyr::group_by(aggMods,brainRegion,ModuleNameFull)
+mani2 <- dplyr::summarise(mani,ngenes=length(GeneID))
+aggnets <- mapply(makeAggregateNetworks,
+               mani2$brainRegion,
+               mani2$ModuleNameFull,
+               MoreArgs = list(aggModMani=aggMods,
+                               networks=ampNetworks),SIMPLIFY = FALSE)
+names(aggnets) <- mani2$ModuleNameFull
+
+
 networkGraphs <- lapply(ampNetworks,
                         igraph::graph_from_adjacency_matrix,
                         mode='undirected')
@@ -65,6 +82,12 @@ collateGraphStatistics <- function(graph){
   return(model)
 }
 
+
+aggNetworkProperties <- lapply(aggnets,collateGraphStatistics)
+aggNetworkProperties2 <- lapply(aggNetworkProperties,
+                             function(x){y <- data.frame(x[-which(names(x)=='transitivity')],stringsAsFactors=F);y$GeneID <- names(x$degree);return(y);})
+
+
 networkProperties <- lapply(networkGraphs,collateGraphStatistics)
 str(networkProperties)
 
@@ -80,9 +103,21 @@ networkProperties3 <- mapply(function(x,y){
   names(networkProperties2),
   networkProperties2,SIMPLIFY = F)
 
+aggNetworkProperties3 <- mapply(function(x,y){
+  colnames(y)[1:7] <- paste0(x,colnames(y)[1:7]);return(y)},
+  names(aggNetworkProperties2),
+  aggNetworkProperties2,SIMPLIFY = F)
 
 networkProperties4 <- Reduce(merge,networkProperties3)
 networkProperties5 <- dplyr::select(networkProperties4,-GeneID)
+
+fxn34 <- function(x,y){
+  return(merge(x,y,all=TRUE))
+}
+
+aggNetworkProperties4 <- Reduce(fxn34,aggNetworkProperties3)
+aggNetworkProperties5 <- dplyr::select(aggNetworkProperties4,-GeneID)
+
 
 
 genesets1 <- synapser::synGet('syn5923958')
@@ -101,7 +136,8 @@ adList2$ad_gwas <- c(adList2$ad_gwas,'SPI1')
 adList2$ad_gwas <- c(adList2$ad_gwas,'ADAM10','ADAMTS4','ACE')
 
 #solly's coloc eqtl analysis
-adList2$ad_gwas <- c(adList2$ad_gwas,'CR1','SLC4A9','C6orf48','HLA-DRB5','PSMB9','HLA-DPB1','CD2AP','SLC39A13','AREL1','RPS6KL1','AL162171.1','RIN3','USP6','ZNF594','RABEP1','NUP88','AC004148.2')
+#adList2$ad_gwas <- c(adList2$ad_gwas,'CR1','SLC4A9','C6orf48','HLA-DRB5','PSMB9','HLA-DPB1','CD2AP','SLC39A13','AREL1','RPS6KL1','AL162171.1','RIN3','USP6','ZNF594','RABEP1','NUP88','AC004148.2')
+adList2$ad_gwas <- c(adList2$ad_gwas,'RIN3','AREL1','SLC4A9')
 
 adList2$ad_gwas <- unique(adList2$ad_gwas)
 
@@ -150,17 +186,29 @@ foo2$value <- rep(1,nrow(foo2))
 foo3 <- tidyr::spread(foo2,key,value,fill=0)
 
 combinedFeatureSet <- dplyr::left_join(networkProperties4,foo3,by=c('GeneID'='ensembl_gene_id'))
+combinedFeatureSet <- dplyr::left_join(combinedFeatureSet,aggNetworkProperties4,by=c('GeneID'))
 combinedFeatureSet2 <- dplyr::select(combinedFeatureSet,-dplyr::ends_with('eigen_centrality'))
 combinedFeatureSet2 <- dplyr::select(combinedFeatureSet2,-GeneID)
 combinedFeatureSet2[is.na(combinedFeatureSet2)] <- 0
 adGene2 <- combinedFeatureSet$GeneID %in% convertAd$ensembl_gene_id
 wZ <- which(colSums(combinedFeatureSet2)<3 & (1:ncol(combinedFeatureSet2))%in%(43:107))
 combinedFeatureSet2 <- combinedFeatureSet2[,-wZ]
+
+store_on_synapse_fs <- combinedFeatureSet2
+
 combinedFeatureSet2 <- scale(combinedFeatureSet2)
 
+####fit models
 res_cf <- apply(combinedFeatureSet2,2,fun,adGene2)
+res_cf3 <- apply(combinedFeatureSet2,2,fun,adGene2)
+
+test_lasso <- glmnet::glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial')
+
 set.seed(1)
-lasso <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial')
+lasso <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40])
+set.seed(1)
+#lasso3 <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial')
+#ridge <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',alpha=0)
 betaScore <- lasso$glmnet.fit$beta[,which(lasso$lambda==lasso$lambda.min)]
 score3 <- combinedFeatureSet2[,names(betaScore)]%*%betaScore
 names(score3) <- networkProperties4$GeneID
