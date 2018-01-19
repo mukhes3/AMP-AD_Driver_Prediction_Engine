@@ -221,9 +221,9 @@ colnames(score3Df)[2] <- 'adDriverScore'
 View(score3Df)
 
 
-permLink <- githubr::getPermlink(repository = 'Sage-Bionetworks/AMP-AD_Network_Analysis',
+permLink <- githubr::getPermlink(repository = 'blogsdon/AMP-AD_Driver_Prediction_Engine',
                                  ref = 'branch',
-                                 refName = 'module_ranking',
+                                 refName = 'dev',
                                  repositoryPath = 'ad_causal_gene_predictor_ver0_0_1.R')
 
 edgeListObj<-rSynapseUtilities::pushDf2Synapse(df = score3Df,
@@ -240,7 +240,7 @@ edgeListObj<-rSynapseUtilities::pushDf2Synapse(df = score3Df,
                                                          'normalizationType' = 'CPM',
                                                          'organism' = 'HomoSapiens',
                                                          'summaryLevel' = 'gene'),
-                                               comment = 'fix provenance',
+                                               comment = 'add aggregate module network features to prediction, plus some additional known ad genetic loci',
                                                usedVector = c(foo5$id,'syn5923958','syn10496554'),
                                                executedVector = permLink,
                                                activityName1 = 'AD gene ranking',
