@@ -143,6 +143,9 @@ adList2$ad_gwas <- c(adList2$ad_gwas,'RIN3','AREL1','SLC4A9')
 #add in loci from Jun et al.
 adList2$ad_gwas <- c(adList2$ad_gwas,'HBEGF')
 
+#add in loci from Preuss et al.
+adList2$ad_gwas <- c(adList2$ad_gwas,'SNX1')
+
 adList2$ad_gwas <- unique(adList2$ad_gwas)
 
 
@@ -287,7 +290,7 @@ edgeListObj<-rSynapseUtilities::pushDf2Synapse(df = score3Df,
                                                          'normalizationType' = 'CPM',
                                                          'organism' = 'HomoSapiens',
                                                          'summaryLevel' = 'gene'),
-                                               comment = 'add 4 more loci from Jun et al',
+                                               comment = 'add Preuss et al snps',
                                                usedVector = c(foo5$id,'syn5923958','syn10496554'),
                                                executedVector = permLink,
                                                activityName1 = 'AD gene ranking',
@@ -323,9 +326,36 @@ combinedAnnos2 <- combinedAnnos[-which(dups),]
 
 combinedAnnos2 <- dplyr::left_join(combinedAnnos2,igap,by=c('refsnp_id'='MarkerName'))
 combinedAnnos3 <- combinedAnnos2[-which(duplicated(combinedAnnos2$refsnp_id)),]
+combinedAnnos3 <- dplyr::arrange(combinedAnnos3,desc(adDriverScore))
+combinedAnnos4 <- combinedAnnos3[1:535,]
+combinedAnnos4 <- dplyr::filter(combinedAnnos4,Pvalue < 0.05/nrow(combinedAnnos4))
+
+
+unique(combinedAnnos4$external_gene_name)
+gap::qqunif(combinedAnnos3$Pvalue,xlim=c(0,4),ylim=c(0,42))
+par(new=T)
+gap::qqunif(combinedAnnos4$Pvalue,xlim=c(0,4),ylim=c(0,42),col='red')
+
+
+
+
+#iga full
+
+igapObj<-synapser::synGet('syn10008574')
+igap <- data.table::fread(igapObj$path,data.table=F)
+View(igap)
+igapAnnotated <- utilityFunctions::convertSnpsToGenes(igap$MarkerName)
+
+####merge with driver score
+combinedAnnos<-dplyr::left_join(igapAnnotated,driverScore,by=c('ensembl_gene_stable_id'='gene'))
+dups <- duplicated(combinedAnnos[,c(1,2)])
+combinedAnnos2 <- combinedAnnos[-which(dups),]
+
+combinedAnnos2 <- dplyr::left_join(combinedAnnos2,igap,by=c('refsnp_id'='MarkerName'))
+combinedAnnos3 <- combinedAnnos2[-which(duplicated(combinedAnnos2$refsnp_id)),]
 combinedAnnos3<-dplyr::arrange(combinedAnnos3,desc(adDriverScore))
 
-combinedAnnos4 <- combinedAnnos3[1:374,]
+combinedAnnos4 <- combinedAnnos3[1:535,]
 combinedAnnos4 <- dplyr::filter(combinedAnnos4,Pvalue < 0.05/nrow(combinedAnnos4))
 
 unique(combinedAnnos4$external_gene_name)
@@ -334,9 +364,4 @@ unique(combinedAnnos4$external_gene_name)
 
 gap::qqunif(combinedAnnos3$Pvalue,xlim=c(0,4),ylim=c(0,42))
 par(new=T)
-gap::qqunif(combinedAnnos3$Pvalue[1:485],xlim=c(0,4),ylim=c(0,42),col='red')
-
-
-
-
-combinedAnnos4 <- dplyr::filter(combinedAnnos3,Pvalue < 0.05/485)
+gap::qqunif(combinedAnnos4$Pvalue,xlim=c(0,4),ylim=c(0,42),col='red')
