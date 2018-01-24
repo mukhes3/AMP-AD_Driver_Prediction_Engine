@@ -141,7 +141,7 @@ adList2$ad_gwas <- c(adList2$ad_gwas,'RIN3','AREL1','SLC4A9')
 
 
 #add in loci from Jun et al.
-adList2$ad_gwas <- c(adList2$ad_gwas,'PFDN1','HBEGF','USP6NL','ECHDC3','BZRAP1-AS1','TPBG')
+adList2$ad_gwas <- c(adList2$ad_gwas,'HBEGF')
 
 adList2$ad_gwas <- unique(adList2$ad_gwas)
 
@@ -325,7 +325,7 @@ combinedAnnos2 <- dplyr::left_join(combinedAnnos2,igap,by=c('refsnp_id'='MarkerN
 combinedAnnos3 <- combinedAnnos2[-which(duplicated(combinedAnnos2$refsnp_id)),]
 combinedAnnos3<-dplyr::arrange(combinedAnnos3,desc(adDriverScore))
 
-combinedAnnos4 <- combinedAnnos3[1:485,]
+combinedAnnos4 <- combinedAnnos3[1:374,]
 combinedAnnos4 <- dplyr::filter(combinedAnnos4,Pvalue < 0.05/nrow(combinedAnnos4))
 
 unique(combinedAnnos4$external_gene_name)
