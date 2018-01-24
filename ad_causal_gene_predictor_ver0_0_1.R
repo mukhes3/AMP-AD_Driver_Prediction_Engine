@@ -139,6 +139,10 @@ adList2$ad_gwas <- c(adList2$ad_gwas,'ADAM10','ADAMTS4','ACE')
 #adList2$ad_gwas <- c(adList2$ad_gwas,'CR1','SLC4A9','C6orf48','HLA-DRB5','PSMB9','HLA-DPB1','CD2AP','SLC39A13','AREL1','RPS6KL1','AL162171.1','RIN3','USP6','ZNF594','RABEP1','NUP88','AC004148.2')
 adList2$ad_gwas <- c(adList2$ad_gwas,'RIN3','AREL1','SLC4A9')
 
+
+#add in loci from Jun et al.
+adList2$ad_gwas <- c(adList2$ad_gwas,'PFDN1','HBEGF','USP6NL','ECHDC3','BZRAP1-AS1','TPBG')
+
 adList2$ad_gwas <- unique(adList2$ad_gwas)
 
 
@@ -234,6 +238,22 @@ test_lasso <- glmnet::glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial')
 set.seed(1)
 lasso <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40])
 set.seed(1)
+lassoA <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2[,1:42],family='binomial',lambda=test_lasso$lambda[1:40])
+set.seed(1)
+lassoB <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2[,43:96],family='binomial',lambda=test_lasso$lambda[1:40])
+set.seed(1)
+lassoC <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2[,97:348],family='binomial',lambda=test_lasso$lambda[1:40])
+no_cores <- parallel::detectCores()
+cl <- parallel::makeCluster(no_cores)
+doParallel::registerDoParallel(cl)
+set.seed(1)
+system.time(lasso <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40]))
+set.seed(1)
+system.time(lasso <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40],parallel = TRUE))
+set.seed(1)
+lassoLOOV <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40],nfolds = length(adGene2),parallel = TRUE)
+
+
 #lasso3 <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial')
 #ridge <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',alpha=0)
 betaScore <- lasso$glmnet.fit$beta[,which(lasso$lambda==lasso$lambda.min)]
@@ -241,7 +261,7 @@ score3 <- combinedFeatureSet2[,names(betaScore)]%*%betaScore
 names(score3) <- networkProperties4$GeneID
 score3Df <- data.frame(gene=names(score3),score5=score3,stringsAsFactors = F)
 
-mapTable2 <- utilityFunctions::convertEnsemblToHgnc(score3Df)
+mapTable2 <- utilityFunctions::convertEnsemblToHgnc(score3Df$gene)
 score3Df <- dplyr::left_join(score3Df,mapTable2,by=c('gene'='ensembl_gene_id'))
 score3Df <- dplyr::arrange(score3Df,desc(score5))
 colnames(score3Df)[2] <- 'adDriverScore'
@@ -267,7 +287,7 @@ edgeListObj<-rSynapseUtilities::pushDf2Synapse(df = score3Df,
                                                          'normalizationType' = 'CPM',
                                                          'organism' = 'HomoSapiens',
                                                          'summaryLevel' = 'gene'),
-                                               comment = 'add aggregate module network features to prediction, plus some additional known ad genetic loci',
+                                               comment = 'add 4 more loci from Jun et al',
                                                usedVector = c(foo5$id,'syn5923958','syn10496554'),
                                                executedVector = permLink,
                                                activityName1 = 'AD gene ranking',
@@ -288,3 +308,35 @@ driverScore2 <- dplyr::left_join(driverScore,genecards,by=c('external_gene_name'
 adList <- list()
 adList$genecards <- genecards$`Gene Symbol`
 
+
+
+#load igap loci
+igapObj<-synapser::synGet('syn10008575')
+igap <- data.table::fread(igapObj$path,data.table=F)
+View(igap)
+igapAnnotated <- utilityFunctions::convertSnpsToGenes(igap$MarkerName)
+
+####merge with driver score
+combinedAnnos<-dplyr::left_join(igapAnnotated,driverScore,by=c('ensembl_gene_stable_id'='gene'))
+dups <- duplicated(combinedAnnos[,c(1,2)])
+combinedAnnos2 <- combinedAnnos[-which(dups),]
+
+combinedAnnos2 <- dplyr::left_join(combinedAnnos2,igap,by=c('refsnp_id'='MarkerName'))
+combinedAnnos3 <- combinedAnnos2[-which(duplicated(combinedAnnos2$refsnp_id)),]
+combinedAnnos3<-dplyr::arrange(combinedAnnos3,desc(adDriverScore))
+
+combinedAnnos4 <- combinedAnnos3[1:485,]
+combinedAnnos4 <- dplyr::filter(combinedAnnos4,Pvalue < 0.05/nrow(combinedAnnos4))
+
+unique(combinedAnnos4$external_gene_name)
+
+
+
+gap::qqunif(combinedAnnos3$Pvalue,xlim=c(0,4),ylim=c(0,42))
+par(new=T)
+gap::qqunif(combinedAnnos3$Pvalue[1:485],xlim=c(0,4),ylim=c(0,42),col='red')
+
+
+
+
+combinedAnnos4 <- dplyr::filter(combinedAnnos3,Pvalue < 0.05/485)
