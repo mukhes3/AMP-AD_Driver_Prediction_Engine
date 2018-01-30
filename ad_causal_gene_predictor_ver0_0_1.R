@@ -143,9 +143,6 @@ adList2$ad_gwas <- c(adList2$ad_gwas,'RIN3','AREL1','SLC4A9')
 #add in loci from Jun et al.
 adList2$ad_gwas <- c(adList2$ad_gwas,'HBEGF')
 
-#add in loci from Preuss et al.
-adList2$ad_gwas <- c(adList2$ad_gwas,'SNX1')
-
 adList2$ad_gwas <- unique(adList2$ad_gwas)
 
 
@@ -202,6 +199,7 @@ wZ <- which(colSums(combinedFeatureSet2)<3 & (1:ncol(combinedFeatureSet2))%in%(4
 combinedFeatureSet2 <- combinedFeatureSet2[,-wZ]
 
 store_on_synapse_fs <- combinedFeatureSet2
+store_on_synapse_fs$GeneID <- combinedFeatureSet$GeneID
 
 permLink <- githubr::getPermlink(repository = 'blogsdon/AMP-AD_Driver_Prediction_Engine',
                                  ref = 'branch',
@@ -220,7 +218,7 @@ fsObj<-rSynapseUtilities::pushDf2Synapse(df = store_on_synapse_fs,
                                                          'normalizationType' = 'CPM',
                                                          'organism' = 'HomoSapiens',
                                                          'summaryLevel' = 'gene'),
-                                               comment = 'first version of network + deg features used for prediction engine',
+                                               comment = 'add gene id',
                                                usedVector = c(foo5$id,'syn10496554'),
                                                executedVector = permLink,
                                                activityName1 = 'feature building',
@@ -327,7 +325,7 @@ combinedAnnos2 <- combinedAnnos[-which(dups),]
 combinedAnnos2 <- dplyr::left_join(combinedAnnos2,igap,by=c('refsnp_id'='MarkerName'))
 combinedAnnos3 <- combinedAnnos2[-which(duplicated(combinedAnnos2$refsnp_id)),]
 combinedAnnos3 <- dplyr::arrange(combinedAnnos3,desc(adDriverScore))
-combinedAnnos4 <- combinedAnnos3[1:535,]
+combinedAnnos4 <- combinedAnnos3[1:524,]
 combinedAnnos4 <- dplyr::filter(combinedAnnos4,Pvalue < 0.05/nrow(combinedAnnos4))
 
 
@@ -336,7 +334,7 @@ gap::qqunif(combinedAnnos3$Pvalue,xlim=c(0,4),ylim=c(0,42))
 par(new=T)
 gap::qqunif(combinedAnnos4$Pvalue,xlim=c(0,4),ylim=c(0,42),col='red')
 
-
+unique(combinedAnnos4$external_gene_name)
 
 
 #iga full
@@ -358,7 +356,7 @@ combinedAnnos3<-dplyr::arrange(combinedAnnos3,desc(adDriverScore))
 combinedAnnos4 <- combinedAnnos3[1:535,]
 combinedAnnos4 <- dplyr::filter(combinedAnnos4,Pvalue < 0.05/nrow(combinedAnnos4))
 
-unique(combinedAnnos4$external_gene_name)
+
 
 
 
