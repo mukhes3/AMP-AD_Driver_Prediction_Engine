@@ -239,20 +239,20 @@ test_lasso <- glmnet::glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial')
 set.seed(1)
 lasso <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40])
 set.seed(1)
-lassoA <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2[,1:42],family='binomial',lambda=test_lasso$lambda[1:40])
-set.seed(1)
-lassoB <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2[,43:96],family='binomial',lambda=test_lasso$lambda[1:40])
-set.seed(1)
-lassoC <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2[,97:348],family='binomial',lambda=test_lasso$lambda[1:40])
-no_cores <- parallel::detectCores()
-cl <- parallel::makeCluster(no_cores)
-doParallel::registerDoParallel(cl)
-set.seed(1)
-system.time(lasso <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40]))
-set.seed(1)
-system.time(lasso <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40],parallel = TRUE))
-set.seed(1)
-lassoLOOV <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40],nfolds = length(adGene2),parallel = TRUE)
+# lassoA <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2[,1:42],family='binomial',lambda=test_lasso$lambda[1:40])
+# set.seed(1)
+# lassoB <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2[,43:96],family='binomial',lambda=test_lasso$lambda[1:40])
+# set.seed(1)
+# lassoC <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2[,97:348],family='binomial',lambda=test_lasso$lambda[1:40])
+# no_cores <- parallel::detectCores()
+# cl <- parallel::makeCluster(no_cores)
+# doParallel::registerDoParallel(cl)
+# set.seed(1)
+# system.time(lasso <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40]))
+# set.seed(1)
+# system.time(lasso <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40],parallel = TRUE))
+# set.seed(1)
+# lassoLOOV <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial',lambda=test_lasso$lambda[1:40],nfolds = length(adGene2),parallel = TRUE)
 
 
 #lasso3 <- glmnet::cv.glmnet(y=adGene2,x=combinedFeatureSet2,family='binomial')
@@ -299,6 +299,15 @@ driverScoreObj <- synapser::synGet('syn11688680')
 driverScore<-read.csv(driverScoreObj$path,stringsAsFactors = F)
 
 
+driverScore$P <- pnorm(driverScore$adDriverScore,lower.tail=F)
+driverScore$P.adjust <- p.adjust(driverScore$P,method='fdr')
+
+#driverScoreAdj <- dplyr::filter(driverScore,P.adjust <=0.5)
+driverScoreAdj <- dplyr::arrange(driverScore,desc(adDriverScore))
+driverScoreAdj <- driverScoreAdj[1:1000,]
+
+
+
 genecardsObj <- synapser::synGet('syn10507702')
 genecards <- data.table::fread(genecardsObj$path,data.table=F)
 
@@ -318,15 +327,16 @@ View(igap)
 igapAnnotated <- utilityFunctions::convertSnpsToGenes(igap$MarkerName)
 
 ####merge with driver score
-combinedAnnos<-dplyr::left_join(igapAnnotated,driverScore,by=c('ensembl_gene_stable_id'='gene'))
+combinedAnnos<-dplyr::left_join(igapAnnotated,driverScoreAdj,by=c('ensembl_gene_stable_id'='gene'))
 dups <- duplicated(combinedAnnos[,c(1,2)])
 combinedAnnos2 <- combinedAnnos[-which(dups),]
 
 combinedAnnos2 <- dplyr::left_join(combinedAnnos2,igap,by=c('refsnp_id'='MarkerName'))
 combinedAnnos3 <- combinedAnnos2[-which(duplicated(combinedAnnos2$refsnp_id)),]
 combinedAnnos3 <- dplyr::arrange(combinedAnnos3,desc(adDriverScore))
-combinedAnnos4 <- combinedAnnos3[1:524,]
-combinedAnnos4 <- dplyr::filter(combinedAnnos4,Pvalue < 0.05/nrow(combinedAnnos4))
+combinedAnnos3 <- dplyr::filter(combinedAnnos3,!is.na(adDriverScore))
+#combinedAnnos4 <- combinedAnnos3[1:524,]
+combinedAnnos4 <- dplyr::filter(combinedAnnos3,Pvalue < 0.05/nrow(combinedAnnos3))
 
 
 unique(combinedAnnos4$external_gene_name)
@@ -363,3 +373,9 @@ combinedAnnos4 <- dplyr::filter(combinedAnnos4,Pvalue < 0.05/nrow(combinedAnnos4
 gap::qqunif(combinedAnnos3$Pvalue,xlim=c(0,4),ylim=c(0,42))
 par(new=T)
 gap::qqunif(combinedAnnos4$Pvalue,xlim=c(0,4),ylim=c(0,42),col='red')
+
+
+
+
+
+
