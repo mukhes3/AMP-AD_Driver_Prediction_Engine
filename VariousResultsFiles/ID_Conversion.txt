@@ -1,0 +1,29 @@
+From	To	Species	Gene Name									
+ABCA7	ENSG00000064687	Homo sapiens	"ATP-binding cassette, sub-family A (ABC1), member 7"									
+ABI3	ENSG00000108798	Homo sapiens	"ABI family, member 3"									
+ACE	ENSG00000159640	Homo sapiens	angiotensin I converting enzyme (peptidyl-dipeptidase A) 1									
+ADAM10	ENSG00000137845	Homo sapiens	ADAM metallopeptidase domain 10									
+ADAMTS4	ENSG00000158859	Homo sapiens	"ADAM metallopeptidase with thrombospondin type 1 motif, 4"									
+APOE	ENSG00000130203	Homo sapiens	hypothetical LOC100129500; apolipoprotein E									
+APP	ENSG00000142192	Homo sapiens	amyloid beta (A4) precursor protein									
+BIN1	ENSG00000136717	Homo sapiens	bridging integrator 1									
+CD2AP	ENSG00000198087	Homo sapiens	CD2-associated protein									
+CELF1	ENSG00000149187	Homo sapiens	"CUG triplet repeat, RNA binding protein 1"									
+CLU	ENSG00000120885	Homo sapiens	clusterin									
+FERMT2	ENSG00000073712	Homo sapiens	fermitin family homolog 2 (Drosophila)									
+HLA-DRB1	ENSG00000196126	Homo sapiens	"major histocompatibility complex, class II, DR beta 4; major histocompatibility complex, class II, DR beta 1"									
+HLA-DRB1	ENSG00000206240	Homo sapiens	"major histocompatibility complex, class II, DR beta 4; major histocompatibility complex, class II, DR beta 1"									
+HLA-DRB1	ENSG00000206306	Homo sapiens	"major histocompatibility complex, class II, DR beta 4; major histocompatibility complex, class II, DR beta 1"									
+HLA-DRB5	ENSG00000198502	Homo sapiens	"major histocompatibility complex, class II, DR beta 5"									
+INPP5D	ENSG00000168918	Homo sapiens	"inositol polyphosphate-5-phosphatase, 145kDa"									
+MEF2C	ENSG00000081189	Homo sapiens	myocyte enhancer factor 2C									
+PICALM	ENSG00000073921	Homo sapiens	phosphatidylinositol binding clathrin assembly protein									
+PLCG2	ENSG00000197943	Homo sapiens	"phospholipase C, gamma 2 (phosphatidylinositol-specific)"									
+PSEN1	ENSG00000080815	Homo sapiens	presenilin 1									
+PSEN2	ENSG00000143801	Homo sapiens	presenilin 2 (Alzheimer disease 4)									
+PTK2B	ENSG00000120899	Homo sapiens	PTK2B protein tyrosine kinase 2 beta									
+RIN3	ENSG00000100599	Homo sapiens	Ras and Rab interactor 3									
+SLC4A9	ENSG00000113073	Homo sapiens	"solute carrier family 4, sodium bicarbonate cotransporter, member 9"									NO
+SORL1	ENSG00000137642	Homo sapiens	"sortilin-related receptor, L(DLR class) A repeats-containing"									
+SPI1	ENSG00000066336	Homo sapiens	spleen focus forming virus (SFFV) proviral integration oncogene spi1									
+TREM2	ENSG00000095970	Homo sapiens	triggering receptor expressed on myeloid cells 2									

@@ -1,0 +1,147 @@
+From	To	Species	Gene Name
+ENSG00000114978	MOBKL1B	Homo sapiens	MOB1, Mps One Binder kinase activator-like 1B (yeast)
+ENSG00000106100	NOD1	Homo sapiens	nucleotide-binding oligomerization domain containing 1
+ENSG00000073921	PICALM	Homo sapiens	phosphatidylinositol binding clathrin assembly protein
+ENSG00000133275	CSNK1G2	Homo sapiens	casein kinase 1, gamma 2
+ENSG00000115107	STEAP3	Homo sapiens	STEAP family member 3
+ENSG00000008838	MED24	Homo sapiens	mediator complex subunit 24
+ENSG00000073712	Fermt2	Homo sapiens	fermitin family homolog 2 (Drosophila)
+ENSG00000137821	LOC654258	Homo sapiens	leucine rich repeat containing 49; similar to leucine rich repeat containing 49
+ENSG00000137821	LRRC49	Homo sapiens	leucine rich repeat containing 49; similar to leucine rich repeat containing 49
+ENSG00000117868	Esyt2	Homo sapiens	family with sequence similarity 62 (C2 domain containing), member B
+ENSG00000095970	TREM2	Homo sapiens	triggering receptor expressed on myeloid cells 2
+ENSG00000074660	SCARF1	Homo sapiens	scavenger receptor class F, member 1
+ENSG00000170745	KCNS3	Homo sapiens	potassium voltage-gated channel, delayed-rectifier, subfamily S, member 3
+ENSG00000196407	THEM5	Homo sapiens	thioesterase superfamily member 5
+ENSG00000196159	FAT4	Homo sapiens	FAT tumor suppressor homolog 4 (Drosophila)
+ENSG00000138434	SSFA2	Homo sapiens	sperm specific antigen 2
+ENSG00000197943	PLCG2	Homo sapiens	phospholipase C, gamma 2 (phosphatidylinositol-specific)
+ENSG00000179344	HLA-DQB1	Homo sapiens	major histocompatibility complex, class II, DQ beta 1; similar to major histocompatibility complex, class II, DQ beta 1
+ENSG00000179344	LOC100133583	Homo sapiens	major histocompatibility complex, class II, DQ beta 1; similar to major histocompatibility complex, class II, DQ beta 1
+ENSG00000166448	TMEM130	Homo sapiens	transmembrane protein 130
+ENSG00000142347	myo1f	Homo sapiens	myosin IF
+ENSG00000170604	IRF2BP1	Homo sapiens	interferon regulatory factor 2 binding protein 1
+ENSG00000166342	NETO1	Homo sapiens	neuropilin (NRP) and tolloid (TLL)-like 1
+ENSG00000181631	P2RY13	Homo sapiens	purinergic receptor P2Y, G-protein coupled, 13
+ENSG00000161249	Dmkn	Homo sapiens	dermokine
+ENSG00000125355	fam70a	Homo sapiens	family with sequence similarity 70, member A
+ENSG00000158859	ADAMTS4	Homo sapiens	ADAM metallopeptidase with thrombospondin type 1 motif, 4
+ENSG00000129968	Fam108a1	Homo sapiens	family with sequence similarity 108, member A4; family with sequence similarity 108, member A5; family with sequence similarity 108, member A1
+ENSG00000129968	FAM108A4	Homo sapiens	family with sequence similarity 108, member A4; family with sequence similarity 108, member A5; family with sequence similarity 108, member A1
+ENSG00000129968	FAM108A5	Homo sapiens	family with sequence similarity 108, member A4; family with sequence similarity 108, member A5; family with sequence similarity 108, member A1
+ENSG00000166987	MBD6	Homo sapiens	methyl-CpG binding domain protein 6
+ENSG00000185043	CIB1	Homo sapiens	calcium and integrin binding 1 (calmyrin)
+ENSG00000078061	araF	Homo sapiens	v-raf murine sarcoma 3611 viral oncogene homolog
+ENSG00000198502	HLA-DRB5	Homo sapiens	major histocompatibility complex, class II, DR beta 5
+ENSG00000160862	AZGP1P1	Homo sapiens	alpha-2-glycoprotein 1, zinc-binding pseudogene 1; alpha-2-glycoprotein 1, zinc-binding
+ENSG00000160862	AZGP1	Homo sapiens	alpha-2-glycoprotein 1, zinc-binding pseudogene 1; alpha-2-glycoprotein 1, zinc-binding
+ENSG00000119917	Ifit3	Homo sapiens	interferon-induced protein with tetratricopeptide repeats 3
+ENSG00000181163	LOC399804	Homo sapiens	nucleophosmin 1 (nucleolar phosphoprotein B23, numatrin) pseudogene 21; hypothetical LOC100131044; similar to nucleophosmin 1; nucleophosmin (nucleolar phosphoprotein B23, numatrin)
+ENSG00000181163	LOC100131044	Homo sapiens	nucleophosmin 1 (nucleolar phosphoprotein B23, numatrin) pseudogene 21; hypothetical LOC100131044; similar to nucleophosmin 1; nucleophosmin (nucleolar phosphoprotein B23, numatrin)
+ENSG00000181163	LOC729686	Homo sapiens	nucleophosmin 1 (nucleolar phosphoprotein B23, numatrin) pseudogene 21; hypothetical LOC100131044; similar to nucleophosmin 1; nucleophosmin (nucleolar phosphoprotein B23, numatrin)
+ENSG00000181163	Npm1	Homo sapiens	nucleophosmin 1 (nucleolar phosphoprotein B23, numatrin) pseudogene 21; hypothetical LOC100131044; similar to nucleophosmin 1; nucleophosmin (nucleolar phosphoprotein B23, numatrin)
+ENSG00000181163	LOC729342	Homo sapiens	nucleophosmin 1 (nucleolar phosphoprotein B23, numatrin) pseudogene 21; hypothetical LOC100131044; similar to nucleophosmin 1; nucleophosmin (nucleolar phosphoprotein B23, numatrin)
+ENSG00000181163	NPM1P21	Homo sapiens	nucleophosmin 1 (nucleolar phosphoprotein B23, numatrin) pseudogene 21; hypothetical LOC100131044; similar to nucleophosmin 1; nucleophosmin (nucleolar phosphoprotein B23, numatrin)
+ENSG00000181163	LOC440577	Homo sapiens	nucleophosmin 1 (nucleolar phosphoprotein B23, numatrin) pseudogene 21; hypothetical LOC100131044; similar to nucleophosmin 1; nucleophosmin (nucleolar phosphoprotein B23, numatrin)
+ENSG00000142192	APP	Homo sapiens	amyloid beta (A4) precursor protein
+ENSG00000094975	C1orf9	Homo sapiens	chromosome 1 open reading frame 9
+ENSG00000177663	Il17ra	Homo sapiens	interleukin 17 receptor A
+ENSG00000185896	lamp1	Homo sapiens	lysosomal-associated membrane protein 1
+ENSG00000167106	FAM102A	Homo sapiens	family with sequence similarity 102, member A
+ENSG00000196126	HLA-DRB4	Homo sapiens	major histocompatibility complex, class II, DR beta 4; major histocompatibility complex, class II, DR beta 1
+ENSG00000196126	hla-drb1	Homo sapiens	major histocompatibility complex, class II, DR beta 4; major histocompatibility complex, class II, DR beta 1
+ENSG00000178445	Gldc	Homo sapiens	glycine dehydrogenase (decarboxylating)
+ENSG00000155366	RHOC	Homo sapiens	ras homolog gene family, member C
+ENSG00000068831	Rasgrp2	Homo sapiens	RAS guanyl releasing protein 2 (calcium and DAG-regulated)
+ENSG00000153563	Cd8a	Homo sapiens	CD8a molecule
+ENSG00000143751	C1orf55	Homo sapiens	chromosome 1 open reading frame 55
+ENSG00000135966	TGFBRAP1	Homo sapiens	transforming growth factor, beta receptor associated protein 1
+ENSG00000175766	EIF4E1B	Homo sapiens	eukaryotic translation initiation factor 4E family member 1B
+ENSG00000120837	NFYB	Homo sapiens	nuclear transcription factor Y, beta
+ENSG00000137491	SLCO2B1	Homo sapiens	solute carrier organic anion transporter family, member 2B1
+ENSG00000120899	PTK2B	Homo sapiens	PTK2B protein tyrosine kinase 2 beta
+ENSG00000163632	C3orf49	Homo sapiens	chromosome 3 open reading frame 49
+ENSG00000184144	CNTN2	Homo sapiens	contactin 2 (axonal)
+ENSG00000084234	aplp2	Homo sapiens	amyloid beta (A4) precursor-like protein 2
+ENSG00000106976	DNM1	Homo sapiens	dynamin 1
+ENSG00000114405	C3orf14	Homo sapiens	chromosome 3 open reading frame 14
+ENSG00000178038	ALS2CL	Homo sapiens	ALS2 C-terminal like
+ENSG00000167110	GOLGA2	Homo sapiens	golgi autoantigen, golgin subfamily a, 2
+ENSG00000178175	ZNF366	Homo sapiens	zinc finger protein 366
+ENSG00000204257	HLA-DMA	Homo sapiens	major histocompatibility complex, class II, DM alpha
+ENSG00000108518	pfn1	Homo sapiens	profilin 1
+ENSG00000198363	asph	Homo sapiens	aspartate beta-hydroxylase
+ENSG00000153982	gdpd1	Homo sapiens	glycerophosphodiester phosphodiesterase domain containing 1
+ENSG00000169507	SLC38A11	Homo sapiens	solute carrier family 38, member 11
+ENSG00000124251	TP53TG5	Homo sapiens	TP53 target 5
+ENSG00000168246	Ubtd2	Homo sapiens	ubiquitin domain containing 2
+ENSG00000081189	MEF2C	Homo sapiens	myocyte enhancer factor 2C
+ENSG00000108684	ACCN1	Homo sapiens	amiloride-sensitive cation channel 1, neuronal
+ENSG00000011600	TYROBP	Homo sapiens	TYRO protein tyrosine kinase binding protein
+ENSG00000173327	Map3k11	Homo sapiens	mitogen-activated protein kinase kinase kinase 11
+ENSG00000174021	gng5	Homo sapiens	guanine nucleotide binding protein (G protein), gamma 5
+ENSG00000168763	CNNM3	Homo sapiens	cyclin M3
+ENSG00000159640	ACE	Homo sapiens	angiotensin I converting enzyme (peptidyl-dipeptidase A) 1
+ENSG00000163235	TGFA	Homo sapiens	transforming growth factor, alpha
+ENSG00000168961	lgals9	Homo sapiens	lectin, galactoside-binding, soluble, 9
+ENSG00000048028	usp28	Homo sapiens	ubiquitin specific peptidase 28
+ENSG00000101194	Slc17a9	Homo sapiens	solute carrier family 17, member 9
+ENSG00000165379	Lrfn5	Homo sapiens	leucine rich repeat and fibronectin type III domain containing 5
+ENSG00000068878	Psme4	Homo sapiens	proteasome (prosome, macropain) activator subunit 4
+ENSG00000179083	FAM133A	Homo sapiens	family with sequence similarity 133, member A
+ENSG00000166473	PKD1L2	Homo sapiens	polycystic kidney disease 1-like 2
+ENSG00000183077	AFMID	Homo sapiens	arylformamidase
+ENSG00000100379	KCTD17	Homo sapiens	potassium channel tetramerisation domain containing 17
+ENSG00000101977	MCF2	Homo sapiens	MCF.2 cell line derived transforming sequence
+ENSG00000019582	CD74	Homo sapiens	CD74 molecule, major histocompatibility complex, class II invariant chain
+ENSG00000172349	IL16	Homo sapiens	interleukin 16 (lymphocyte chemoattractant factor)
+ENSG00000123338	NCKAP1L	Homo sapiens	NCK-associated protein 1-like
+ENSG00000198576	ARC	Homo sapiens	activity-regulated cytoskeleton-associated protein
+ENSG00000134755	DSC2	Homo sapiens	desmocollin 2
+ENSG00000149187	Celf1	Homo sapiens	CUG triplet repeat, RNA binding protein 1
+ENSG00000066336	SPI1	Homo sapiens	spleen focus forming virus (SFFV) proviral integration oncogene spi1
+ENSG00000064687	ABCA7	Homo sapiens	ATP-binding cassette, sub-family A (ABC1), member 7
+ENSG00000153132	clgn	Homo sapiens	calmegin
+ENSG00000135697	bcmo1	Homo sapiens	beta-carotene 15,15'-monooxygenase 1
+ENSG00000129667	rhbdf2	Homo sapiens	rhomboid 5 homolog 2 (Drosophila)
+ENSG00000113296	thbs4	Homo sapiens	thrombospondin 4
+ENSG00000105722	erF	Homo sapiens	Ets2 repressor factor
+ENSG00000113070	HBEGF	Homo sapiens	heparin-binding EGF-like growth factor
+ENSG00000176971	Fibin	Homo sapiens	fin bud initiation factor homolog (zebrafish)
+ENSG00000102468	HTR2A	Homo sapiens	5-hydroxytryptamine (serotonin) receptor 2A
+ENSG00000143801	psen2	Homo sapiens	presenilin 2 (Alzheimer disease 4)
+ENSG00000099337	kcnk6	Homo sapiens	potassium channel, subfamily K, member 6
+ENSG00000100599	rin3	Homo sapiens	Ras and Rab interactor 3
+ENSG00000100292	hmox1	Homo sapiens	heme oxygenase (decycling) 1
+ENSG00000137449	CPEB2	Homo sapiens	cytoplasmic polyadenylation element binding protein 2
+ENSG00000130203	APOE	Homo sapiens	hypothetical LOC100129500; apolipoprotein E
+ENSG00000130203	LOC100129500	Homo sapiens	hypothetical LOC100129500; apolipoprotein E
+ENSG00000006042	Tmem98	Homo sapiens	similar to transmembrane protein 98; transmembrane protein 98
+ENSG00000006042	LOC440181	Homo sapiens	similar to transmembrane protein 98; transmembrane protein 98
+ENSG00000127993	c7orf64	Homo sapiens	chromosome 7 open reading frame 64
+ENSG00000158019	BRE	Homo sapiens	brain and reproductive organ-expressed (TNFRSF1A modulator)
+ENSG00000168672	FAM84B	Homo sapiens	family with sequence similarity 84, member B
+ENSG00000135318	NT5E	Homo sapiens	5'-nucleotidase, ecto (CD73)
+ENSG00000136717	bin1	Homo sapiens	bridging integrator 1
+ENSG00000135525	MAP7	Homo sapiens	microtubule-associated protein 7
+ENSG00000163219	Arhgap25	Homo sapiens	Rho GTPase activating protein 25
+ENSG00000184271	POU6F1	Homo sapiens	POU class 6 homeobox 1
+ENSG00000120049	Kcnip2	Homo sapiens	Kv channel interacting protein 2
+ENSG00000136859	ANGPTL2	Homo sapiens	angiopoietin-like 2
+ENSG00000182141	ZNF708	Homo sapiens	zinc finger protein 708
+ENSG00000137845	ADAM10	Homo sapiens	ADAM metallopeptidase domain 10
+ENSG00000198087	CD2AP	Homo sapiens	CD2-associated protein
+ENSG00000168918	Inpp5d	Homo sapiens	inositol polyphosphate-5-phosphatase, 145kDa
+ENSG00000188848	BEND4	Homo sapiens	BEN domain containing 4
+ENSG00000080815	Psen1	Homo sapiens	presenilin 1
+ENSG00000213186	Trim59	Homo sapiens	tripartite motif-containing 59
+ENSG00000173559	OBFC2A	Homo sapiens	oligonucleotide/oligosaccharide-binding fold containing 2A
+ENSG00000187796	CARD9	Homo sapiens	caspase recruitment domain family, member 9
+ENSG00000198597	ZNF536	Homo sapiens	zinc finger protein 536
+ENSG00000105281	SLC1A5	Homo sapiens	solute carrier family 1 (neutral amino acid transporter), member 5
+ENSG00000109084	TMEM97	Homo sapiens	transmembrane protein 97
+ENSG00000143514	tp53bp2	Homo sapiens	tumor protein p53 binding protein, 2
+ENSG00000133019	CHRM3	Homo sapiens	cholinergic receptor, muscarinic 3
+ENSG00000137642	SORL1	Homo sapiens	sortilin-related receptor, L(DLR class) A repeats-containing
+ENSG00000120885	clu	Homo sapiens	clusterin
+ENSG00000108798	ABI3	Homo sapiens	ABI family, member 3
